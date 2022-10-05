@@ -9242,11 +9242,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "G:\\PracticeProject\\Anwar\\Anwar\\Anwar.csproj",
+      "projectUniqueName": "G:\\WorkingOn\\Git-Practice\\Anwar\\Anwar.csproj",
       "projectName": "Anwar",
-      "projectPath": "G:\\PracticeProject\\Anwar\\Anwar\\Anwar.csproj",
+      "projectPath": "G:\\WorkingOn\\Git-Practice\\Anwar\\Anwar.csproj",
       "packagesPath": "C:\\Users\\dell\\.nuget\\packages\\",
-      "outputPath": "G:\\PracticeProject\\Anwar\\Anwar\\obj\\",
+      "outputPath": "G:\\WorkingOn\\Git-Practice\\Anwar\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\dell\\AppData\\Roaming\\NuGet\\NuGet.Config",
