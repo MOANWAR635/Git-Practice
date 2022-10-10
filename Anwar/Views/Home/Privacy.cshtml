@@ -8,10 +8,10 @@
 <p>Use this page to detail your site's privacy policy.</p>
 
 
-<table >
+<table>
     <thead>
         <tr>
-            <th >UserID</th>
+            <th>UserID</th>
             <th style="padding-left:70px;">ID</th>
             <th style="padding-left:70px;">Title</th>
             <th style="padding-left:70px;">Body</th>
@@ -21,17 +21,39 @@
     <tbody>
         @foreach (var item in Model)
         {
-        <tr>
-            <td >@item.userId</td>
-            <td style="padding-left:70px;">@item.id</td>
-            <td style="padding-left:70px;">@item.title</td>
-            <td style="padding-left:70px;">@item.body</td>
+            <tr>
+                <td>@item.userId</td>
+                <td style="padding-left:70px;">@item.id</td>
+                <td style="padding-left:70px;">@item.title</td>
+                <td style="padding-left:70px;">@item.body</td>
 
 
-        </tr>
+            </tr>
         }
 
-   </tbody>
+    </tbody>
 
 
 </table>
+
+
+
+    <div >
+        <table>
+            <tr>
+                <td style="float:left">@Html.ActionLink("Previous", "Privacy", new { number = Model.Select(x => x.Pagenumber - 1).FirstOrDefault() })</td>
+                <td style="padding-left:900px;">@Html.ActionLink("Next", "Privacy", new { number = Model.Select(x => x.Pagenumber + 1).FirstOrDefault() })</td>
+
+            </tr>
+        </table>
+       
+
+    </div>
+   
+    <div>
+   
+
+    </div>
+
+
+

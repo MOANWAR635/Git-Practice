@@ -9,6 +9,8 @@ using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
+using MailKit.Net.Smtp;
+using MailKit;
 
 namespace Anwar.Controllers
 {
@@ -26,8 +28,14 @@ namespace Anwar.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult Privacy( int number)
         {
+
+
+            if (number == 0)
+            {
+                number=1;
+            }
             int pagenumber = 1;
             int pagesize = 10;
 
@@ -43,9 +51,11 @@ namespace Anwar.Controllers
                     var data = message.Content.ReadAsStringAsync().Result;
 
                     var outObject = JsonConvert.DeserializeObject<List<LiveData>>(data);
+                    var data1 = outObject.Count();
 
-                    var viewdata = outObject.Skip(pagesize *  (pagenumber-1)).Take(pagesize);
+                    var viewdata = outObject.Skip(pagesize *  (number - pagenumber)).Take(pagesize);
 
+                    outObject.ForEach(x => x.Pagenumber = number);
                     //foreach (var item in viewdata)
                     //{
                     //    LiveData live = new LiveData()
@@ -107,7 +117,7 @@ namespace Anwar.Controllers
                     student1.LName = student.LName;
                     student1.FatherName = student.FatherName;
                     student1.Email = student.Email;
-                    student1.Passwords = "123456";
+                    student1.Passwords = student.Passwords;
                     student1.Pincode = student.Pincode;
                     student1.Address = student.Address;
                     _DBcontext.students.Add(student1);
@@ -116,12 +126,12 @@ namespace Anwar.Controllers
 
                     if (a > 0)
                     {
-                         return View("Login1");
+                         return RedirectToAction("ListStudent");
 
                     }
 
             }
-            return View();
+            return RedirectToAction("ListStudent");
 
            // return View();
         }
@@ -149,13 +159,8 @@ namespace Anwar.Controllers
                 EditData.LName = student.LName;
                 EditData.FName = student.FName;
                 EditData.Pincode = student.Pincode;
-
                _DBcontext.SaveChanges();
-
-                
-
                 // RedirectToAction("Edit");
-
             }
 
             return RedirectToAction("ListStudent", "Home"); 
@@ -179,12 +184,7 @@ namespace Anwar.Controllers
             
                 return RedirectToAction("ListStudent", "Home");
 
-
-
-
         }
-
-
         //Logout
 
         public IActionResult Login1(Login login)

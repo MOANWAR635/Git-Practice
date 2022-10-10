@@ -20,6 +20,7 @@ namespace Anwar.Models
 
        public  string title { get; set; }
         public string body { get; set; }
+        public int Pagenumber { get; set; }
 
 
 
