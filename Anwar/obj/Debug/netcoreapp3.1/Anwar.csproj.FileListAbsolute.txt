@@ -862,3 +862,4 @@ G:\WorkingOn\Git-Practice\Anwar\obj\Debug\netcoreapp3.1\Anwar.dll
 G:\WorkingOn\Git-Practice\Anwar\obj\Debug\netcoreapp3.1\Anwar.pdb
 G:\WorkingOn\Git-Practice\Anwar\obj\Debug\netcoreapp3.1\Anwar.genruntimeconfig.cache
 G:\WorkingOn\Git-Practice\Anwar\obj\Debug\netcoreapp3.1\Anwar.csproj.AssemblyReference.cache
+G:\WorkingOn\Git-Practice\Anwar\obj\Debug\netcoreapp3.1\Razor\Views\Home\GetApplicantsList.cshtml.g.cs

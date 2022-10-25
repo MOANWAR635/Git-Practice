@@ -32,7 +32,7 @@
                         <div class="form-group">
 
                             <label>LName</label>
-                            <input type="text" placeholder="Enter Lname" class="form-control" id="lName"autocomplete="off" />
+                            <input type="text" placeholder="Enter Lname" class="form-control" id="lName" autocomplete="off" />
                         </div>
 
                         <div class="form-group">
@@ -44,35 +44,35 @@
                         <div class="form-group">
 
                             <label>Password</label>
-                            <input type="text" placeholder="Enter Pass" class="form-control" id="Pass" autocomplete="off"/>
+                            <input type="text" placeholder="Enter Pass" class="form-control" id="Pass" autocomplete="off" />
                         </div>
 
                         <div class="form-group">
 
                             <label>FatherName</label>
-                            <input type="text" placeholder="Enter FatherName" class="form-control" id="fathername" autocomplete="off"/>
+                            <input type="text" placeholder="Enter FatherName" class="form-control" id="fathername" autocomplete="off" />
                         </div>
 
 
                         <div class="form-group">
 
                             <label>Address</label>
-                            <input type="text" placeholder="Enter FatherName" class="form-control" id="Address" autocomplete="off"/>
+                            <input type="text" placeholder="Enter Address" class="form-control" id="Address" autocomplete="off" />
                         </div>
 
                         <div class="form-group">
 
                             <label>Pincode</label>
-                            <input type="text" placeholder="Enter Pincode" class="form-control" id="pincode" autocomplete="off"/>
+                            <input type="text" placeholder="Enter Pincode" class="form-control" id="pincode" autocomplete="off" />
                         </div>
 
                     </form>
                 </div>
-                
+
                 <div class="modal-footer">
 
                     <button class="btn btn-primary" onclick="AddStudent()" id="AddEmployee">Save</button>
-                    <button class="btn btn-danger btn-default" onclick="hidediv()" id="AddEmployees" >Close</button>
+                    <button class="btn btn-danger btn-default" onclick="hidediv()" id="AddEmployees">Close</button>
                 </div>
             </div>
 
@@ -83,12 +83,15 @@
 
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="G:\WorkingOn\Git-Practice\Anwar\ExternalUse.js"></script>
+
+
 
 <script>
 
     $('#btnStudent').click(function () {
 
-            $('#Studentmodel').modal('show');
+        $('#Studentmodel').modal('show');
     })
 
 
@@ -104,41 +107,40 @@
             Address: $('#Address').val(),
             Pincode: $('#pincode').val()
         }
-    
-    $.ajax({
 
-        url: '/Home/Regstration',
+        $.ajax({
+
+            url: '/Home/Regstration',
             type: 'Post',
             data: StudentObject,
             //contentType: 'application/json;charset=utf-8',
             //dataType: 'json',
-        success: function () {
-            alert('Data Save');
-            cleartextbox();
-            hidediv();
+            success: function () {
+                alert('Data Save');
+                cleartextbox();
+                hidediv();
             },
-        error: function () {
-            alert('Error');
+            error: function () {
+                alert('Error');
             }
 
         })
     }
 
 
-    function cleartextbox()
-    {
-          $('#ID').val(''),
-             $('#fName').val(''),
-           $('#lName').val(''),
-             $('#Email').val(''),
+    function cleartextbox() {
+        $('#ID').val(''),
+            $('#fName').val(''),
+            $('#lName').val(''),
+            $('#Email').val(''),
             $('#Pass').val(''),
-             $('#fathername').val(''),
-             $('#Address').val(''),
+            $('#fathername').val(''),
+            $('#Address').val(''),
             $('#pincode').val('')
 
     }
 
-    
+
 
     function hidediv() {
         $('#Studentmodel').modal('hide');
@@ -180,7 +182,7 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.ID )
+                    @Html.DisplayFor(modelItem => item.ID)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.FName)
@@ -204,11 +206,71 @@
                     @Html.DisplayFor(modelItem => item.Pincode)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new {  id=item.ID  }) 
-                    @Html.ActionLink("Details", "Details", new {  id=item. ID }) |
-                    @Html.ActionLink("Delete", "Delete", new { id=item.ID  })
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ID })
+                    @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
                 </td>
             </tr>
         }
     </tbody>
 </table>
+<hr />
+<hr />
+
+<div id="data">
+    dsnfjksdjkfjskdffjkgkdfhghdfughuihtrhghtrhgrthrfhdsfhewfewihrfiwehfoigoergjgreergrferf[[[ger]]]
+    dcbsfbsdbfbdggihgirgnfgngohroeihgojgjgaejfpojepfenngnfgioreioghoergjperojgprjepgjpwejgpojrpgjew
+    dsfnjdefebfebfekjbfkkewbfkbekbfkj,dnnvldsk;opejgjrghrioghrkvvbcggxz,mcjxzcsaohwofhwqhfoihweoifheoe
+</div>
+<p id="abc">Helllo bro</p>
+<button type="submit" value="button" id="btn"> Button</button>
+<br />
+<br />
+<button type="submit" value="button" id="btn1"> Button1</button>
+<br />
+<br />
+<button type="submit" value="button" id="btn2"> Button2</button>
+
+<script>
+    $(document).ready(function () {
+
+        $('#btn').click(function () {
+
+            console.log("DATA SHOW ");
+            alert("Click");
+
+            $('#data').toggle(8000, function () {
+
+                alert("DataHide");
+            });
+        });
+
+        $('#btn1').mouseenter(function () {
+
+            console.log("DATA SHOW ");
+            alert("Click");
+
+            $('#data').fadeToggle(8000, function () {
+
+                alert("DataHide");
+            });
+        });
+
+
+        $('#btn2').click(function () {
+
+            console.log("DATA SHOW ");
+            alert("Click");
+
+            $('#data').animate({opacity: 0.39, }, 5000);
+
+            $('#data').animate({ height: '150px', }, 5000);
+            $('#data').animate({ with: '250px', }, 5000);
+        });
+
+
+
+    });
+
+</script>
+

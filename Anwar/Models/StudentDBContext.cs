@@ -16,6 +16,8 @@ namespace Anwar.Models
         public DbSet<Student> students{ get; set; }
 
         public DbSet<LiveData> liveDatas { get; set; }
+
+        public DbSet<Results> results { get; set; }
     }
 }
 
