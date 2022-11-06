@@ -241,7 +241,7 @@ namespace Anwar.Controllers
                 Results results = new Results ();
                 try
                 {
-                    client.DefaultRequestHeaders.Add("Authorization", "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyMjU1MTIsImV4cCI6MTY2NjY5NTU1MCwiaWF0IjoxNjY2MDkwNzUwfQ.UVmZyAtRNuGsXFEd4bIewP233U9ScR7ZFJ1BIi_fcb0");
+                    client.DefaultRequestHeaders.Add("Authorization", "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyMjU1MTIsImV4cCI6MTY2NzQ4NjE1NCwiaWF0IjoxNjY3NDgyNTU0fQ.DvRVd_gicjfWTc1UUVf0kSYOSJDFlMgZ0quUHyQlmu4");
                     // client.DefaultRequestHeaders.Add("Content-Type", "application/json");
                     HttpResponseMessage message = new HttpResponseMessage();
 
@@ -332,8 +332,90 @@ namespace Anwar.Controllers
                 }
             return View();
         }
-           
+
+        public IActionResult GetClientData()
+        {
+            List<ReturnDataView> addData = new List<ReturnDataView>();
+            string url = "https://api.ceipal.com/v1/getClientsList/";
+
+            using (HttpClient client = new HttpClient())
+            {
+                try
+                {
+                    client.DefaultRequestHeaders.Add("Authorization", "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyMjU1MTIsImV4cCI6MTY2NzQ5NjEzNSwiaWF0IjoxNjY3NDkyNTM1fQ.ZpFe2AmaVxtUiny8Wp2BgD_RQNfXkYEdLrOaiYnSLiE");
+                    HttpResponseMessage message = new HttpResponseMessage();
+                    message = client.GetAsync(url).Result;
+                        if (message.IsSuccessStatusCode)
+                        {
+                            var data = message.Content.ReadAsStringAsync().Result;
+                            var serialization = JsonConvert.SerializeObject(data);
+                            var show = JsonConvert.DeserializeObject<GetClientsList>(data);
+                              var getData = show.results;
+
+                       List<Results1> results = new List<Results1>();
+                        results.AddRange(getData);
+                        var getdata = _DBcontext.GetClientsData.AsQueryable();
+
+                        var getid = getData.Select(x => x.id).AsQueryable();
+
+                        
+                        //List<ReturnDataView> UpdateData = new List<ReturnDataView>();
+
+                        ReturnDataView returnDataView = new ReturnDataView();
+
+
+                        foreach (var item in results)
+                        {
+                            if (getid.Contains(item.id))
+                            {
+                                _DBcontext.GetClientsData.UpdateRange(item);
+                                // _DBcontext.SaveChanges();
+                                returnDataView.id = item.id;
+                                returnDataView.name = item.name;
+                                returnDataView.state = item.state;
+                                returnDataView.status = item.status;
+                                returnDataView.created_at = item.created_at;
+                                addData.Add(returnDataView);
+                            }
+                            if(!getid.Contains(item.id))
+                            {
+                                _DBcontext.GetClientsData.AddRange(results);
+                                returnDataView.id = item.id;
+                                returnDataView.name = item.name;
+                                returnDataView.state = item.state;
+                                returnDataView.status = item.status;
+                                returnDataView.created_at = item.created_at;
+                                addData.Add(returnDataView);
+
+
+                            }
+                        }
+
+                        _DBcontext.SaveChanges();
+
+                                           
+
+
+
+                    }
+
+                }
+                catch (Exception ex)
+                {
+
+                    throw;
+                }
+
+
+            }
+
+          return View(addData);
+
         }
+
+
+
+    }
 
  }
 

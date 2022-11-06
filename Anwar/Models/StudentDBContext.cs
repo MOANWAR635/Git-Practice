@@ -18,6 +18,8 @@ namespace Anwar.Models
         public DbSet<LiveData> liveDatas { get; set; }
 
         public DbSet<Results> results { get; set; }
+
+        public DbSet<Results1> GetClientsData { get; set;}
     }
 }
 
